@@ -11,6 +11,8 @@ import Fonts from '../atoms/Fonts.astro';
 import ExtraMetaTags from '../atoms/ExtraMetaTags.astro';
 import SplitbeeAnalytics from './SplitbeeAnalytics.astro';
 
+const { generator, site } = Astro;
+
 const { src: defaultImage } = await getImage({
 	src: defaultImageSrc,
 	width: 1200,
@@ -32,14 +34,15 @@ const {
 
 const image =
 	typeof _image === 'string'
-		? new URL(_image, Astro.site)
+		? new URL(_image, site)
 		: _image && typeof _image['src'] !== 'undefined'
-		? new URL(getRelativeUrlByFilePath(_image.src), Astro.site)
+		? new URL(getRelativeUrlByFilePath(_image.src), site)
 		: null;
 ---
 
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="generator" content={generator} />
 
 <AstroSeo
 	title={title}
@@ -58,7 +61,7 @@ const image =
 						url: image.toString(),
 						alt: ogTitle,
 					},
-			  ]
+				]
 			: undefined,
 		// site_name: 'SiteName',
 	}}

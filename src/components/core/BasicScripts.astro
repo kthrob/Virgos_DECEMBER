@@ -7,14 +7,21 @@
 	//   localStorage.theme = "light";
 	// }
 
-	if (
-		localStorage.theme === 'dark' ||
-		(!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)
-	) {
-		document.documentElement.classList.add('dark');
+	const savedTheme = localStorage.getItem('theme');
+	const deviceTheme = window.matchMedia('(prefers-color-scheme: dark)');
+
+	if (savedTheme) {
+		document.documentElement.dataset.theme = savedTheme;
 	} else {
-		document.documentElement.classList.remove('dark');
+		const prefersDark = deviceTheme.matches;
+		document.documentElement.dataset.theme = prefersDark ? 'dark' : 'light';
 	}
+	
+	deviceTheme.addEventListener('change', (event) => {
+		if (!savedTheme) {
+			document.documentElement.dataset.theme = event.matches ? 'dark' : 'light';
+		}
+	});
 
 	function attachEvent(selector, event, fn) {
 		const matches = document.querySelectorAll(selector);
@@ -26,17 +33,17 @@
 	}
 
 	window.onload = function () {
-		attachEvent('[data-aw-toggle-menu]', 'click', function (elem) {
+		/* attachEvent('[data-aw-toggle-menu]', 'click', function (elem) {
 			elem.classList.toggle('expanded');
 			document.body.classList.toggle('overflow-hidden');
 			document.getElementById('header')?.classList.toggle('h-screen');
 			document.querySelector('#header nav')?.classList.toggle('hidden');
-		});
+		}); */
 
-		attachEvent('[data-aw-toggle-color-scheme]', 'click', function () {
+		/* attachEvent('[data-aw-toggle-color-scheme]', 'click', function () {
 			document.documentElement.classList.toggle('dark');
 			localStorage.theme = document.documentElement.classList.contains('dark') ? 'dark' : 'light';
-		});
+		}); */
 
 		attachEvent('[data-aw-social-share]', 'click', function (elem) {
 			const network = elem.getAttribute('data-aw-social-share');
@@ -71,7 +78,7 @@
 			newlink.click();
 		});
 	};
-	window.onpageshow = function () {
+	/* window.onpageshow = function () {
 		const elem = document.querySelector('[data-aw-toggle-menu]');
 		if (elem) {
 			elem.classList.remove('expanded');
@@ -79,5 +86,5 @@
 		document.body.classList.remove('overflow-hidden');
 		document.getElementById('header')?.classList.remove('h-screen');
 		document.querySelector('#header nav')?.classList.add('hidden');
-	};
+	}; */
 </script>

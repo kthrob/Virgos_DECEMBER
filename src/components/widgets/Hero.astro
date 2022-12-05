@@ -1,63 +1,38 @@
 ---
 import { Icon } from 'astro-icon';
-import { Picture } from '@astrojs/image/components'
+import Container from './Container.astro';
+import ButtonPrimary from '../atoms/ButtonPrimary.astro';
+import ButtonSecondary from '../atoms/ButtonSecondary.astro';
 ---
 
-<section>
-	<div class="max-w-6xl mx-auto px-4 sm:px-6">
-		<div class="py-12 md:py-20">
-			<div class="text-center pb-10 md:pb-16 max-w-5xl mx-auto">
-				<h1 class="text-5xl md:text-[3.50rem] font-bold leading-tighter tracking-tighter mb-4 font-heading">
-					Your website with
-					<span>Astro</span> +
-					<span
-						class="sm:whitespace-nowrap"
-						>Tailwind CSS</span
-					>
-				</h1>
-				<div class="max-w-3xl mx-auto">
-					<p class="text-xl text-gray-600 mb-8 dark:text-slate-400">
-						<span class="font-semibold underline decoration-wavy decoration-1 decoration-primary-600 underline-offset-2">AstroWind</span> is a production ready template to start your new website using <em>Astro</em> + <em>Tailwind CSS</em>. It has been
-						designed following Best Practices, SEO, Accessibility, <span class="inline sm:hidden">...</span><span
-							class="hidden sm:inline"
-							>Dark Mode, Great Page Speed, image optimization, sitemap generation and more.</span
-						>
-					</p>
-					<div class="max-w-xs sm:max-w-md m-auto flex flex-nowrap flex-col sm:flex-row sm:justify-center gap-4">
-						<div class="flex w-full sm:w-auto">
-							<a
-								class="btn btn-primary sm:mb-0 w-full"
-								href="https://github.com/onwidget/astrowind"
-								target="_blank"
-								rel="noopener"
-							>
-								<Icon name="tabler:download" class="w-5 h-5 mr-1 -ml-1.5" /> Get template
-							</a>
-						</div>
-						<div class="flex w-full sm:w-auto">
-							<a
-								class="btn w-full"
-								href="#features">Learn more</a
-							>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div>
-				<div class="relative m-auto max-w-4xl">
-					<Picture
-						src={import('~/assets/images/hero.jpg')}
-						class="mx-auto rounded-md w-full"
-						widths={[400, 768, 1480]}
-						sizes="(max-width: 767px) 400px, (max-width: 1479px) 768px, 1480px"
-						alt="Hero Image"
-						aspectRatio={1480/833}
-						loading="eager"
-						width={1480}
-						height={833}
-					/>
+<section id="hero" class="relative h-screen">
+	<div aria-hidden="true" class="absolute inset-0 grid grid-cols-2 -space-x-52 opacity-40 dark:opacity-20">
+		<div class="blur-[106px] h-56 bg-gradient-to-br from-primary to-purple-400 dark:from-blue-700"></div>
+		<div class="blur-[106px] h-32 bg-gradient-to-r from-cyan-400 to-sky-300 dark:to-indigo-600"></div>
+	</div>
+	<div class="relative grid h-full place-items-center">
+    <div
+      class="flex flex-col gap-2 sm:gap-4 sm:self-auto"
+    >
+      <Icon name="wordmark" class="h-24 text-primary md:h-32" />
+			<h2 class="text-default font-bold tracking-tighter text-center text-3xl md:text-4xl xl:text-5xl mb-4">
+				<span class="text-primary" style="text-shadow: 1px 2px 2px #000000">Premium</span> Designs.
+			</h2>
+    </div>
+  </div>
+	<!-- <Container>
+		<div class="relative mx-auto">
+			<div class="flex flex-col lg:w-2/3 text-center items-center mx-auto">
+				<h2 class="text-default font-bold text-5xl md:text-6xl xl:text-7xl mb-4">
+					<span class="text-primary mb-2" style="text-shadow: 1px 2px 2px #000000">Premium</span> Designs.
+				</h2>
+				<h2 class="text-default font-bold text-5xl md:text-6xl xl:text-7xl">
+					<span class="text-primary mb-2" style="text-shadow: 1px 2px 2px #000000">Sensible</span> Prices.
+				</h2>
+				<div class="mt-16 flex flex-wrap justify-center gap-y-4 gap-x-6">
+					<ButtonSecondary href="#" text="Get started" />
 				</div>
 			</div>
 		</div>
-	</div>
+	</Container> -->
 </section>
