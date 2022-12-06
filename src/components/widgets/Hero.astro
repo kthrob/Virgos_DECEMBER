@@ -3,6 +3,7 @@ import { Icon } from 'astro-icon';
 import Container from './Container.astro';
 import ButtonPrimary from '../atoms/ButtonPrimary.astro';
 import ButtonSecondary from '../atoms/ButtonSecondary.astro';
+import HeroImage from "~/components/widgets/HeroImage.astro";
 ---
 
 <section id="hero" class="relative h-screen">
@@ -10,6 +11,9 @@ import ButtonSecondary from '../atoms/ButtonSecondary.astro';
 		<div class="blur-[106px] h-56 bg-gradient-to-br from-primary to-purple-400 dark:from-blue-700"></div>
 		<div class="blur-[106px] h-32 bg-gradient-to-r from-cyan-400 to-sky-300 dark:to-indigo-600"></div>
 	</div>
+	<div class="absolute inset-0 overflow-hidden opacity-40">
+    <HeroImage />
+  </div>
 	<div class="relative grid h-full place-items-center">
     <div
       class="flex flex-col gap-2 sm:gap-4 sm:self-auto"

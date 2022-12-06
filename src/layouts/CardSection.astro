@@ -1,0 +1,20 @@
+---
+export interface Props {
+	id: string;
+	title: string;
+	bg: 'primary' | 'secondary';
+}
+
+const { title, id, bg } = Astro.props;
+
+const bgColors = {
+	primary: 'bg-primary',
+	secondary: 'bg-secondary',
+};
+
+let background = bgColors[bg];
+---
+
+<section id={id} class={`bg-default py-8 flex flex-col items-center gap-4 space-y-8 scroll-mt-24`}>
+	<slot />
+</section>
