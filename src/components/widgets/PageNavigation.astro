@@ -4,11 +4,13 @@ import Logo from '~/components/atoms/Logo.astro';
 import { getHomePermalink, getBlogPermalink, getPermalink, getRelativeLink } from '~/utils/permalinks';
 import ToggleTheme from '~/components/core/ThemeSwitcher.astro';
 
-const navItems = [
-	{ title: 'Features', url: '#features' },
-	{ title: 'Compatibility', url: '#compatibility' },
-	{ title: 'Showcase', url: '#showcase' },
-];
+import type { NavItem } from '~/types';
+
+export interface Props {
+	links: Array<NavItem>;
+}
+
+const { links } = Astro.props;
 ---
 
 <header
@@ -24,7 +26,7 @@ const navItems = [
 			<nav class="hidden sm:block">
 				<ul class="flex items-center gap-6">
 					{
-						navItems.map(({ title, url }) => (
+						links.map(({ title, url }) => (
 							<li>
 								<a class="text-sm" href={url}>
 									{title}
@@ -53,7 +55,7 @@ const navItems = [
 					<nav>
 						<ul class="flex flex-col">
 							{
-								navItems.map(({ title, url }) => (
+								links.map(({ title, url }) => (
 									<li>
 										<a class="block py-4 text-center text-xl" href={url}>
 											{title}

@@ -26,4 +26,9 @@ export interface ShowcaseSite {
 	url: string;
 }
 
+export interface SiteMeta {
+	title: string;
+	description: string;
+	canonical: URL;
+}
 /* Example types, none of these are actually being used....  */

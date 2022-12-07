@@ -1,7 +1,7 @@
 ---
 import { SITE } from '~/config.mjs';
 import { getCanonical, getHomePermalink } from '~/utils/permalinks';
-import Layout from '~/layouts/PageLayout.astro';
+import PageLayout from '~/layouts/PageLayout.astro';
 
 import Splash from '~/components/widgets/Splash.astro';
 import Intro from '~/components/widgets/Intro.astro';
@@ -18,14 +18,22 @@ import Services from '~/components/widgets/Services.astro';
 
 import JumbotronTest from '~/components/in-progress/JumbotronTest.astro';
 
-const meta = {
+import type { NavItem, SiteMeta } from "~/types";
+
+const meta: SiteMeta = {
 	title: SITE.title,
 	description: SITE.description,
 	canonical: getCanonical(getHomePermalink()),
 };
+
+const sectionLinks: Array<NavItem> = [
+	{ title: 'Why Virgos', url: '#features' },
+	{ title: 'Services', url: '#compatibility' },
+	{ title: 'Showcase', url: '#showcase' },
+]
 ---
 
-<Layout {meta}>
+<PageLayout meta={meta} links={sectionLinks}>
 	<Splash slot="splash" />
 	<Intro />
 	<JumbotronTest />
@@ -40,4 +48,4 @@ const meta = {
 	<FAQs />
 	<Stats />
 	<CallToAction />
-</Layout>
+</PageLayout>
