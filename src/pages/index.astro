@@ -7,7 +7,7 @@ import Hero from '~/components/widgets/Hero.astro';
 import Intro from '~/components/widgets/Intro.astro';
 import Note from '~/components/widgets/Note.astro';
 import Features from '~/components/widgets/Features.astro';
-import Features2 from '~/components/widgets/Features2.astro';
+import Price from '~/components/widgets/Price.astro';
 import Steps from '~/components/widgets/Steps.astro';
 import Features3 from '~/components/widgets/Features3.astro';
 import HighlightedPosts from '~/components/blog/HighlightedPosts.astro';
@@ -26,12 +26,12 @@ const meta = {
 <Layout {meta}>
 	<Hero slot="hero" />
 	<Intro />
+	<Services />
 	<Note />
-	<Services />
 	<Features />
-	<Steps />
+<!-- 	<Steps /> -->
 	<Services />
-	<Features2 />
+	<Price />
 	<Features3 />
 	<HighlightedPosts />
 	<FAQs />

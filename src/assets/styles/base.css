@@ -1,4 +1,5 @@
 @import 'theme.css';
+@import 'devices.css';
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
@@ -14,12 +15,12 @@
 		@apply focus:outline-none focus:ring-2 focus:ring-secondary focus:ring-offset-2 focus:ring-offset-transparent;
 	}
 
-	/* .gradient-text {
+	/* .text-gradient {
 		@apply bg-clip-text text-transparent;
 		@apply bg-gradient-to-br from-primary via-blue-500 to-secondary;
 	} */
 
-	.gradient-text {
+	.text-gradient {
 		@apply bg-clip-text text-transparent;
 		background-image: linear-gradient(90deg,#1e3791 0%,#2948b1 40%,#3153c6 55%,#385fda 60%);
 	}

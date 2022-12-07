@@ -1,20 +1,25 @@
 ---
+import Card from '~/components/widgets/Card.astro';
+
 export interface Props {
-	id: string;
-	title: string;
+	items: any;
 }
 
-const { id, title } = Astro.props;
-
+const { items } = Astro.props;
 
 ---
-
-<section id={id} class={`relative bg-default py-8 flex flex-col items-center scroll-mt-24`}>
-	<div class="flex flex-col items-center gap-4">
-		<slot name="eyebrow" />
-		<h2 class=" text-2xl md:text-3xl font-extrabold tracking-tight text-center gradient-text">
-			{title}
-		</h2>
+<div class="w-full">
+	<!-- <div class="absolute inset-0 bg-primary-50 dark:bg-slate-800 pointer-events-none mb-32" aria-hidden="true"></div> -->
+	<div class="relative mx-auto max-w-screen-md lg:px-6 lg:max-w-screen-xl xl:max-w-screen-2xl">
+		<div class="py-4 sm:py-6 lg:py-8">
+			<div class="grid gap-6 md:grid-cols-2 md:mx-6 items-start">
+				{
+					items.map(({ title, description, background}) => (
+						<Card title={title} description={description} bg={background} />
+					))
+				}
+			</div>
+		</div>
 	</div>
-	<slot />
-</section>
+</div>
+

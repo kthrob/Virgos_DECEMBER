@@ -1,0 +1,15 @@
+---
+import { Icon } from 'astro-icon';
+import ContentSection from '~/layouts/ContentSection.astro';
+import Mockup from './Mockup.astro';
+---
+
+<ContentSection title="What we do" id="services" bg="secondary">
+	<Fragment slot="lead">
+		Astro is a new kind of site builder for the
+		<span class="text-primary">modern</span> web.
+		<span class="text-primary">Lightning-fast</span>
+		performance meets <span class="text-primary">powerful</span> developer experience.
+	</Fragment>
+	<Mockup device="iphone" imageUrl="/src/assets/images/bg-iphone-14-pro.jpg"/>
+</ContentSection>

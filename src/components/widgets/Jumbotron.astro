@@ -1,0 +1,31 @@
+---
+export interface Props {
+	id: string;
+	title: string;
+	bg: 'primary' | 'secondary';
+}
+
+const { title, id, bg } = Astro.props;
+
+const bgColors = {
+	primary: 'bg-primary',
+	secondary: 'bg-secondary',
+};
+
+let background = bgColors[bg];
+---
+
+<section id={id} class={`${background} py-16 md:py-12 lg:py-24  flex flex-col items-center gap-4 scroll-mt-24`}>
+	<hgroup>
+		<div class="flex flex-col items-center gap-4">
+			<slot name="eyebrow" />
+			<h2 class="py-2 text-5xl font-extrabold tracking-tight text-center text-gradient">
+				{title}
+			</h2>
+		</div>
+		<p class="max-w-xl text-xl font-extrabold text-center">
+			<slot name="lead" />
+		</p>
+	</hgroup>
+	<slot name="buttons" />
+</section>

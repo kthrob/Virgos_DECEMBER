@@ -1,13 +1,36 @@
 ---
-import { Icon } from "astro-icon";
-import ContentSection from "~/layouts/ContentSection.astro";
+import { Icon } from 'astro-icon';
+import CardSection from '~/layouts/CardSection.astro';
+import ContentSection from '~/layouts/ContentSection.astro';
+
+const items = [
+	{
+		title: 'Headers',
+		description:
+			'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+		icon: 'flat-color-icons:home',
+	},
+	{
+		title: 'Footers',
+		description:
+			'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+		icon: 'flat-color-icons:faq',
+	},
+	{
+		title: 'Features',
+		description:
+			'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+		icon: 'flat-color-icons:video-projector',
+	},
+	{
+		title: 'Call-to-Action',
+		description:
+			'Lorem ipsum dolor sit amet, consectetur adipiscing elit.',
+		icon: 'flat-color-icons:video-projector',
+	},
+];
 ---
 
-<ContentSection title="What we do" id="services" bg="secondary">
-  <Fragment slot="lead">
-    Astro is a new kind of site builder for the
-    <span class="text-primary">modern</span> web.
-    <span class="text-primary">Lightning-fast</span>
-    performance meets <span class="text-primary">powerful</span> developer experience.
-  </Fragment>
+<ContentSection id="services" title="Our Services">
+	<CardSection items={items} />
 </ContentSection>
