@@ -1,6 +1,6 @@
 ---
 import Card from '~/components/widgets/Card.astro';
-
+import Mockup from '~/components/widgets/Mockup.astro';
 export interface Props {
 	items: any;
 }
@@ -14,8 +14,10 @@ const { items } = Astro.props;
 		<div class="py-4 sm:py-6 lg:py-8">
 			<div class="grid gap-6 md:grid-cols-2 md:mx-6 items-start">
 				{
-					items.map(({ title, description, background}) => (
-						<Card title={title} description={description} bg={background} />
+					items.map(({ title, description, background, content}) => (
+						<Card title={title} description={description} bg={background}>
+							
+						</Card>
 					))
 				}
 			</div>

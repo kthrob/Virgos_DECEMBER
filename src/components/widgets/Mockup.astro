@@ -1,21 +1,22 @@
 ---
 export interface Props {
-	device: 'iphone' | 'macbook' | 'ipad';
+	device: 'iphone' | 'macbook' | 'ipad' | 'imac';
 	imageUrl: string;
 }
 
 const { device, imageUrl } = Astro.props;
 
 const devices = {
+	ipad: 'device-ipad-pro',
 	iphone: 'device-iphone-14-pro',
 	macbook: 'device-macbook-14-pro',
-	ipad: 'device-ipad-pro',
+	imac: 'device-imac'
 };
 
 const type = devices[device];
 ---
 
-<div class={`device ${type}`}>
+<div class={`device ${type} mx-auto`}>
 	<div class="device-frame">
 		<img class="device-screen" src={imageUrl} />
 	</div>

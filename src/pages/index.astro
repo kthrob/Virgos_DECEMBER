@@ -3,7 +3,7 @@ import { SITE } from '~/config.mjs';
 import { getCanonical, getHomePermalink } from '~/utils/permalinks';
 import Layout from '~/layouts/PageLayout.astro';
 
-import Hero from '~/components/widgets/Hero.astro';
+import Splash from '~/components/widgets/Splash.astro';
 import Intro from '~/components/widgets/Intro.astro';
 import Note from '~/components/widgets/Note.astro';
 import Features from '~/components/widgets/Features.astro';
@@ -16,6 +16,8 @@ import Stats from '~/components/widgets/Stats.astro';
 import CallToAction from '~/components/widgets/CallToAction.astro';
 import Services from '~/components/widgets/Services.astro';
 
+import JumbotronTest from '~/components/in-progress/JumbotronTest.astro';
+
 const meta = {
 	title: SITE.title,
 	description: SITE.description,
@@ -24,8 +26,9 @@ const meta = {
 ---
 
 <Layout {meta}>
-	<Hero slot="hero" />
+	<Splash slot="splash" />
 	<Intro />
+	<JumbotronTest />
 	<Services />
 	<Note />
 	<Features />

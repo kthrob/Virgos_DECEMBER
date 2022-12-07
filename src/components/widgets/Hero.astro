@@ -1,25 +1,31 @@
 ---
-import { Icon } from 'astro-icon';
-import Container from '~/layouts/Container.astro';
-import ButtonPrimary from '../atoms/ButtonPrimary.astro';
-import ButtonSecondary from '../atoms/ButtonSecondary.astro';
-import HeroImage from "~/components/widgets/HeroImage.astro";
+export interface Props {
+	id: string;
+	title: string;
+	bg: 'primary' | 'secondary';
+}
+
+const { title, id, bg } = Astro.props;
+
+const bgColors = {
+	primary: 'bg-primary',
+	secondary: 'bg-secondary',
+};
+
+let background = bgColors[bg];
 ---
 
-<section id="hero" class="relative h-screen bg-primary">
-	<div aria-hidden="true" class="absolute inset-0 grid grid-cols-2 -space-x-52 opacity-40 pt-72 ">
-		<div class="blur-[106px] h-56 bg-gradient-to-br from-primary to-purple-400 dark:from-blue-700"></div>
-		<div class="blur-[106px] h-32 bg-gradient-to-r from-cyan-400 to-sky-300 dark:to-indigo-600"></div>
-	</div>
-	<!-- <div class="absolute inset-0 overflow-hidden opacity-40">
-    <HeroImage />
-  </div> -->
-	<div class="relative grid h-full place-items-center">
-    <div
-      class="flex gap-2 sm:gap-4 sm:self-auto"
-    >
-			<Icon name="logomark" class="text-primary h-16 md:h-24 lg:h-32 inline-block" />
-      <Icon name="wordmark" class="text-primary h-24 md:h-32 lg:h-44 inline-block" />
-    </div>
-  </div>
+<section id={id} class={`${background} py-16 md:py-12 lg:py-24  flex flex-col items-center gap-4 scroll-mt-24`}>
+	<hgroup>
+		<div class="flex flex-col items-center gap-4">
+			<slot name="eyebrow" />
+			<h2 class="py-2 text-5xl font-extrabold tracking-tight text-center text-gradient">
+				{title}
+			</h2>
+		</div>
+		<p class="max-w-xl text-xl font-extrabold text-center">
+			<slot name="lead" />
+		</p>
+	</hgroup>
+	<slot name="buttons" />
 </section>
