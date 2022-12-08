@@ -44,7 +44,7 @@
 
 	document.addEventListener('scroll', () => {
 		localNav.classList.toggle('fixed-header', localNavAtTop());
-		globalNav.classList.toggle('hidden', localNavAtTop());
+		globalNav.classList.toggle('opacity-0', localNavAtTop());
 		if (localNavAtTop()) {
 			localNav.classList.add('backdrop-blur-md', 'bg-default-glass');
 		} else {
