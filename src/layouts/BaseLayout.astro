@@ -3,6 +3,7 @@ import '~/assets/styles/base.css';
 
 import MetaTags from '~/components/core/MetaTags.astro';
 import BasicScripts from '~/components/core/BasicScripts.astro';
+import NavigationScripts from '~/components/core/NavigationScripts.astro';
 
 const { meta = {} } = Astro.props;
 ---
@@ -12,9 +13,12 @@ const { meta = {} } = Astro.props;
 	<head>
 		<MetaTags {...meta} />
 	</head>
-		<body class="relative antialiased h-full overflow-x-hidden bg-default text-default text-base selection:bg-secondary selection:text-white">
+	<body
+		class="relative antialiased h-full overflow-x-hidden bg-default text-default text-base selection:bg-secondary selection:text-white"
+	>
 		<slot />
 		<BasicScripts />
+		<NavigationScripts />
 		<style is:global>
 			img {
 				content-visibility: auto;

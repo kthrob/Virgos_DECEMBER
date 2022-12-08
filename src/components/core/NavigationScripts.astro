@@ -1,0 +1,68 @@
+---
+---
+
+<script>
+	import MicroModal from 'micromodal';
+	import invariant from 'tiny-invariant';
+
+	const menuModalId = 'menu-modal';
+
+	const globalNav = document.querySelector('#global-nav') as HTMLElement;
+	const localNav = document.querySelector('#local-nav') as HTMLElement;
+	const page = document.documentElement;
+	const menu = document.querySelector(`#${menuModalId} ul`);
+	const openNavButton = document.querySelector('#open-nav-button');
+	const closeNavButton = document.querySelector('#close-nav-button');
+
+	function localNavAtTop() {
+		const d = page.clientHeight - page.scrollTop - localNav.offsetHeight;
+		return d <= 0;
+	}
+
+	invariant(globalNav, 'global-nav should not be null');
+	invariant(localNav, 'local-nav should not be null');
+	invariant(menu, 'menu should not be null');
+	invariant(openNavButton, 'openNavButton should not be null');
+	invariant(closeNavButton, 'closeNavButton should not be null');
+
+	const openMenu = () => {
+		MicroModal.show(menuModalId, { disableScroll: true });
+		if (localNavAtTop()) {
+			localNav.classList.remove('backdrop-blur-md');
+		}
+	};
+
+	const closeMenu = () => {
+		MicroModal.close(menuModalId);
+		if (localNavAtTop()) {
+			localNav.classList.add('backdrop-blur-md');
+		}
+	};
+
+	openNavButton.addEventListener('click', openMenu);
+	closeNavButton.addEventListener('click', closeMenu);
+
+	document.addEventListener('scroll', () => {
+		localNav.classList.toggle('fixed-header', localNavAtTop());
+		globalNav.classList.toggle('hidden', localNavAtTop());
+		if (localNavAtTop()) {
+			localNav.classList.add('backdrop-blur-md', 'bg-default-glass');
+		} else {
+			localNav.classList.remove('backdrop-blur-md', 'bg-default-glass');
+		}
+	});
+
+	menu.addEventListener('click', (event) => {
+		if ((event.target as HTMLElement).tagName === 'A') {
+			closeMenu();
+		}
+	});
+</script>
+
+<noscript>
+	<style>
+		#open-nav-button {
+			display: none;
+		}
+	</style>
+</noscript>

@@ -20,9 +20,9 @@ const { meta, localLinks, globalLinks, socialLinks } = Astro.props;
 	<SkipToContent />
 	<Announcement />
 	<Header globalLinks={globalLinks} socialLinks={socialLinks} />
-	<PageNavigation links={localLinks} />
 	<slot name="splash" />
-	<main>
+	<main class="relative">
+		<PageNavigation links={localLinks} />
 		<slot />
 	</main>
 	<Footer />

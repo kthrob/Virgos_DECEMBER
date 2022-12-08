@@ -1,8 +1,6 @@
 ---
 import { Icon } from 'astro-icon';
-import Logo from '~/components/atoms/Logo.astro';
 import { getHomePermalink, getBlogPermalink, getPermalink, getRelativeLink } from '~/utils/permalinks';
-import ToggleTheme from '~/components/core/ThemeSwitcher.astro';
 
 import type { NavLink, IconLink } from '~/types';
 
@@ -14,17 +12,16 @@ export interface Props {
 const { globalLinks, socialLinks } = Astro.props;
 ---
 
-<!-- <header
-	id="page-header"
-	aria-label="page navigation"
-	class="absolute bottom-0 z-20 flex w-full items-center justify-between border-b border-default px-8 py-1 text-default"
-> -->
 <nav
-	class="sticky top-0 z-40 flex w-full items-center border-b border-default bg-secondary text-primary backdrop-blur-xl"
-	id="header"
+	id="global-nav"
+	aria-label="primary navigation"
+	class="fixed top-0 z-40 flex w-full items-center border-b border-default bg-secondary text-primary backdrop-blur-xl"
 >
 	<div class="w-full flex py-1 px-4">
 		<div class="max-w-screen-lg mx-auto flex w-full">
+			<button id="open-nav-button" type="button" class="btn sm:hidden" aria-label="Navigation">
+				<Icon pack="mdi" name="menu" class="h-8" />
+			</button>
 			<ul class="flex items-center justify-between w-full px-2">
 				<li class="p-1 flex flex-col items-center">
 					<a href={getHomePermalink()} title="home button" aria-label="Home">
@@ -85,61 +82,6 @@ const { globalLinks, socialLinks } = Astro.props;
 	</div>
 </nav>
 
-<script>
-	import MicroModal from 'micromodal';
-	import invariant from 'tiny-invariant';
-
-	const menuModalId = 'menu-modal';
-
-	const header = document.querySelector('#page-header') as HTMLElement;
-	const page = document.documentElement;
-	const menu = document.querySelector(`#${menuModalId} ul`);
-	const openNavButton = document.querySelector('#open-nav-button');
-	const closeNavButton = document.querySelector('#close-nav-button');
-
-	function headerAtTop() {
-		const d = page.clientHeight - page.scrollTop - header.offsetHeight;
-		return d < 0;
-	}
-
-	invariant(header, 'header should not be null');
-	invariant(menu, 'menu should not be null');
-	invariant(openNavButton, 'openNavButton should not be null');
-	invariant(closeNavButton, 'closeNavButton should not be null');
-
-	const openMenu = () => {
-		MicroModal.show(menuModalId, { disableScroll: true });
-		if (headerAtTop()) {
-			header.classList.remove('backdrop-blur-md');
-		}
-	};
-
-	const closeMenu = () => {
-		MicroModal.close(menuModalId);
-		if (headerAtTop()) {
-			header.classList.add('backdrop-blur-md');
-		}
-	};
-
-	openNavButton.addEventListener('click', openMenu);
-	closeNavButton.addEventListener('click', closeMenu);
-
-	document.addEventListener('scroll', () => {
-		header.classList.toggle('fixed-header', headerAtTop());
-		if (headerAtTop()) {
-			header.classList.add('backdrop-blur-md', 'bg-default-glass');
-		} else {
-			header.classList.remove('backdrop-blur-md', 'bg-default-glass');
-		}
-	});
-
-	menu.addEventListener('click', (event) => {
-		if ((event.target as HTMLElement).tagName === 'A') {
-			closeMenu();
-		}
-	});
-</script>
-
 <noscript>
 	<style>
 		#open-nav-button {
@@ -147,12 +89,3 @@ const { globalLinks, socialLinks } = Astro.props;
 		}
 	</style>
 </noscript>
-
-<style>
-	.fixed-header {
-		@apply fixed top-0 bottom-auto;
-	}
-	.modal.is-open {
-		@apply block;
-	}
-</style>

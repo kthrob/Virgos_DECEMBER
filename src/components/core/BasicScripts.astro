@@ -2,11 +2,6 @@
 ---
 
 <script is:inline>
-	// Set "light" theme as default
-	// if (!localStorage.theme) {
-	//   localStorage.theme = "light";
-	// }
-
 	const savedTheme = localStorage.getItem('theme');
 	const deviceTheme = window.matchMedia('(prefers-color-scheme: dark)');
 
@@ -16,7 +11,7 @@
 		const prefersDark = deviceTheme.matches;
 		document.documentElement.dataset.theme = prefersDark ? 'dark' : 'light';
 	}
-	
+
 	deviceTheme.addEventListener('change', (event) => {
 		if (!savedTheme) {
 			document.documentElement.dataset.theme = event.matches ? 'dark' : 'light';

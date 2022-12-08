@@ -22,7 +22,7 @@
 
 	.text-gradient {
 		@apply bg-clip-text text-transparent;
-		background-image: linear-gradient(90deg,#1e3791 0%,#2948b1 40%,#3153c6 55%,#385fda 60%);
+		background-image: linear-gradient(90deg, #1e3791 0%, #2948b1 40%, #3153c6 55%, #385fda 60%);
 	}
 
 	.btn-ghost {
@@ -32,6 +32,13 @@
 	.btn-primary {
 		@apply font-semibold bg-primary text-white border-primary hover:bg-primary hover:border-primary hover:text-white dark:text-white dark:bg-primary dark:border-primary dark:hover:border-primary dark:hover:bg-primary;
 	}
+}
+
+.fixed-header {
+	@apply fixed top-0 bottom-auto;
+}
+.modal.is-open {
+	@apply block;
 }
 
 .dropdown:hover .dropdown-menu {
