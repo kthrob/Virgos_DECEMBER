@@ -1,9 +1,9 @@
 ---
 import Announcement from '~/components/widgets/Announcement.astro';
 import Footer from '~/components/widgets/Footer.astro';
-import Header from '~/components/widgets/Header.astro';
+import NavGlobal from '~/components/widgets/NavGlobal.astro';
 import Layout from '~/layouts/BaseLayout.astro';
-import PageNavigation from '~/components/widgets/PageNavigation.astro';
+import NavLocal from '~/components/widgets/NavLocal.astro';
 import SkipToContent from '~/components/widgets/SkipToContent.astro';
 
 import type { NavLink, MetaData } from '~/types';
@@ -17,8 +17,8 @@ const { meta, links } = Astro.props;
 <Layout {meta}>
 	<SkipToContent />
 	<Announcement />
-	<Header links={} />
-	<PageNavigation links={links} />
+	<NavGlobal links={} />
+	<NavLocal links={links} />
 	<main>
 		<slot />
 	</main>
