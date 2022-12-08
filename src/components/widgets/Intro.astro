@@ -1,14 +1,17 @@
 ---
-import { Icon } from "astro-icon";
-import Hero from "./Hero.astro";
+import { Icon } from 'astro-icon';
+import Hero from './Hero.astro';
+import ContentSection from '~/layouts/ContentSection.astro';
 ---
-<Hero title="Premium Designs." id="intro" bg="primary">
-	<Icon slot="eyebrow" name="logomark" class="h-16" />
-  <Fragment slot="lead">
-		Astro is a new kind of site builder for the
-    <span class="text-accent">modern</span> web.
-    <span class="text-accent">Lightning-fast</span>
-    performance meets <span class="text-accent">powerful</span> developer experience.
-  </Fragment>
-</Hero>
 
+<ContentSection id="intro">
+	<Hero title="Premium Designs." id="intro" bg="primary">
+		<Icon slot="eyebrow" name="logomark" class="h-16" />
+		<Fragment slot="lead">
+			Astro is a new kind of site builder for the
+			<span class="text-accent">modern</span> web.
+			<span class="text-accent">Lightning-fast</span>
+			performance meets <span class="text-accent">powerful</span> developer experience.
+		</Fragment>
+	</Hero>
+</ContentSection>

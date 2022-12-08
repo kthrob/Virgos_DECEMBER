@@ -16,6 +16,7 @@
 
 	function localNavAtTop() {
 		const d = page.clientHeight - page.scrollTop - localNav.offsetHeight;
+		console.log('local nav at top?', d <= 0);
 		return d <= 0;
 	}
 
@@ -44,7 +45,9 @@
 
 	document.addEventListener('scroll', () => {
 		localNav.classList.toggle('fixed-header', localNavAtTop());
-		globalNav.classList.toggle('opacity-0', localNavAtTop());
+		/* localNav.classList.toggle('sticky', localNavAtTop()); */
+		/* globalNav.classList.toggle('fixed', localNavAtTop()); */
+		globalNav.classList.toggle('sticky', localNavAtTop());
 		if (localNavAtTop()) {
 			localNav.classList.add('backdrop-blur-md', 'bg-default-glass');
 		} else {

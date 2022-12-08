@@ -7,59 +7,38 @@ import ToggleTheme from '~/components/core/ThemeSwitcherOLD.astro';
 import type { NavLink } from '~/types';
 
 export interface Props {
-	links: Array<NavLink>;
+	localLinks: Array<NavLink>;
 }
 
-const { links } = Astro.props;
+const { localLinks } = Astro.props;
 ---
 
 <nav
 	id="local-nav"
 	aria-label="page navigation"
-	class="absolute top-0 z-20 flex w-full items-center justify-between border-b border-default px-8 py-1 text-default"
+	class="absolute top-0 z-20 flex w-full items-center border-b border-default bg-secondary text-primary backdrop-blur-xl transition-all duration-1000 ease-in-out"
 >
-	<Logo />
-	<div>
-		<div class="flex items-center gap-6">
-			<nav class="hidden sm:block">
-				<ul class="flex items-center gap-6">
-					{
-						links.map(({ title, url }) => (
-							<li>
-								<a class="text-sm" href={url}>
-									{title}
-								</a>
-							</li>
-						))
-					}
-				</ul>
-			</nav>
-			<!-- <ToggleTheme /> -->
-		</div>
-		<div id="menu-modal" class="modal hidden" aria-hidden="true">
-			<div class="fixed inset-0 bg-default px-8 py-4">
-				<div class="space-y-4" role="dialog" aria-modal="true">
-					<div class="text-right">
-						<button id="close-nav-button" type="button" class="btn" aria-label="Close navigation">
-							<Icon pack="mdi" name="close" class="h-8" />
-						</button>
-					</div>
-					<div class="flex justify-center">
-						<Icon name="logomark" class="h-16" />
-					</div>
-					<ul class="flex flex-col">
-						{
-							links.map(({ title, url }) => (
-								<li>
-									<a class="block py-4 text-center text-xl" href={url}>
-										{title}
-									</a>
-								</li>
-							))
-						}
-					</ul>
-				</div>
+	<div class="w-full flex py-1 px-4">
+		<div class="max-w-screen-lg mx-auto flex w-full">
+			<div class="p-1 flex flex-row items-center pl-2">
+				<span class="p-1 flex flex-col items-center">
+					<a href={getHomePermalink()} title="home button" aria-label="Home">
+						<Icon name="logomark" class="w-6 h-6" />
+					</a>
+				</span>
 			</div>
+			<ul class="flex flex-row-reverse items-center w-full pr-2 gap-6">
+				{
+					localLinks.map(({ id, title, url }) => (
+						<li id={`local-link-${id}`} class="p-1 flex flex-col items-center">
+							<a class="text-xs" href={url}>
+								{title}
+							</a>
+						</li>
+					))
+				}
+			</ul>
+			<!-- <ToggleTheme /> -->
 		</div>
 	</div>
 </nav>

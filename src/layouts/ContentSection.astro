@@ -5,21 +5,18 @@ export interface Props {
 	bg?: 'primary' | 'secondary';
 }
 
-const { title, id, bg='default' } = Astro.props;
+const { title, id, bg = 'default' } = Astro.props;
 
 const bgColors = {
 	primary: 'bg-primary',
 	secondary: 'bg-secondary',
-  default: 'bg-default'
+	default: 'bg-default',
 };
 
 let background = bgColors[bg];
 ---
 
-<section
-	id={id}
-	class={`${background} py-8 md:py-12 lg:py-24 flex flex-col items-center gap-4 scroll-mt-24`}
->
+<section id={id} class={`${background} py-8 md:py-12 lg:py-24 flex flex-col items-center gap-4`}>
 	<div class="flex flex-col items-center gap-4">
 		<h2 class="text-2xl md:text-3xl lg:text-4xl font-extrabold tracking-tight text-center text-gradient">
 			{title}

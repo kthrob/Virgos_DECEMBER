@@ -15,11 +15,13 @@ export interface IconLink {
 	title: string;
 	desc: string;
 	url: string;
+	id: string;
 }
 
 export interface NavLink {
 	title: string;
 	url: string;
+	id: string;
 }
 
 export interface ShowcaseSite {

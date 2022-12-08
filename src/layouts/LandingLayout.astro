@@ -22,7 +22,7 @@ const { meta, localLinks, globalLinks, socialLinks } = Astro.props;
 	<NavGlobal globalLinks={globalLinks} socialLinks={socialLinks} />
 	<slot name="splash" />
 	<main class="relative">
-		<NavLocal links={localLinks} />
+		<NavLocal localLinks={localLinks} />
 		<slot />
 	</main>
 	<Footer />

@@ -1,11 +1,11 @@
 ---
 export interface Props {
-	id: string;
+	bg: string;
+	copy: string;
 	title: string;
-	bg: 'primary' | 'secondary';
 }
 
-const { title, id, bg } = Astro.props;
+const { bg, copy, title } = Astro.props;
 
 const bgColors = {
 	primary: 'bg-primary',
@@ -15,7 +15,7 @@ const bgColors = {
 let background = bgColors[bg];
 ---
 
-<section id={id} class={`${background} py-16 md:py-12 lg:py-24  flex flex-col items-center gap-4`}>
+<header class={`${background} sticky top-0 w-full py-16 md:py-12 lg:py-24  flex flex-col items-center gap-4`}>
 	<hgroup>
 		<div class="flex flex-col items-center gap-4">
 			<slot name="eyebrow" />
@@ -28,4 +28,4 @@ let background = bgColors[bg];
 		</p>
 	</hgroup>
 	<slot name="buttons" />
-</section>
+</header>

@@ -1,0 +1,36 @@
+---
+import Hero from '~/components/widgets/Hero.astro';
+
+export interface Props {
+	id: string;
+	title: string;
+	copy: string;
+	bg?: 'primary' | 'secondary';
+}
+
+const { title, id, bg = 'default' } = Astro.props;
+
+const bgColors = {
+	primary: 'bg-primary',
+	secondary: 'bg-secondary',
+	default: 'bg-default',
+};
+
+let background = bgColors[bg];
+---
+
+<section id={id} class={`${background} w-full py-8 flex flex-col items-center gap-4`}>
+	<Hero title={title} bg={background}>
+		<Fragment slot="lead">
+			Astro is a new kind of site builder for the
+			<span class="text-accent">modern</span> web.
+			<span class="text-accent">Lightning-fast</span>
+			performance meets <span class="text-accent">powerful</span> developer experience.
+		</Fragment>
+	</Hero>
+	<div class="w-full">
+		<div class="relative max-w-screen-xl min-h-[500px] bg-secondary mx-auto md:rounded-2xl shadow-md overflow-hidden">
+			Card
+		</div>
+	</div>
+</section>
