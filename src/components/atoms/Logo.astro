@@ -3,10 +3,8 @@ import { Icon } from 'astro-icon';
 import { getHomePermalink } from '~/utils/permalinks';
 ---
 
-<a id="brand" aria-label="logo" class="items-center gap-3" href={getHomePermalink()}>
-	<div aria-hidden="true" class="flex space-x-1">
-		<h1 class="sr-only">Virgos Design</h1>
-		<Icon name="logomark" class="h-6" />
-		<Icon name="wordmark" class="h-8 block" />
-	</div>
+<a id="brand" aria-label="logo" class="flex items-center" href={getHomePermalink()}>
+	<h1 class="sr-only">Virgos Design</h1>
+	<Icon name="logomark" class="h-6" />
+	<Icon name="wordmark" class="h-8 block" />
 </a>

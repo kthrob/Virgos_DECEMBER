@@ -1,81 +1,158 @@
 ---
 import { Icon } from 'astro-icon';
 import Logo from '~/components/atoms/Logo.astro';
-import ToggleTheme from '~/components/core/ToggleTheme.astro';
-import ToggleMenu from '~/components/core/ToggleMenu.astro';
-
 import { getHomePermalink, getBlogPermalink, getPermalink, getRelativeLink } from '~/utils/permalinks';
+import ToggleTheme from '~/components/core/ThemeSwitcher.astro';
+
+import type { NavLink, IconLink } from '~/types';
+
+export interface Props {
+	globalLinks: Array<NavLink>;
+	socialLinks: Array<IconLink>;
+}
+
+const { globalLinks, socialLinks } = Astro.props;
 ---
 
-<header
-	class="sticky top-0 z-40 flex-none mx-auto w-full bg-default md:bg-default-glass md:backdrop-blur-xl"
+<!-- <header
+	id="page-header"
+	aria-label="page navigation"
+	class="absolute bottom-0 z-20 flex w-full items-center justify-between border-b border-default px-8 py-1 text-default"
+> -->
+<nav
+	class="sticky top-0 z-40 flex w-full items-center border-b border-default bg-secondary text-primary backdrop-blur-xl"
 	id="header"
 >
-	<div class="py-3 px-3 mx-auto w-full md:flex md:justify-between max-w-6xl md:px-4">
-		<div class="flex justify-between">
-			<a class="flex items-center" href={getHomePermalink()}>
-				<Logo />
-			</a>
-			<div class="flex items-center md:hidden">
-				<ToggleTheme />
-				<ToggleMenu />
-			</div>
-		</div>
-		<nav
-			class="items-center w-full md:w-auto hidden md:flex text-gray-600 dark:text-slate-200 h-[calc(100vh-100px)] md:h-auto overflow-y-auto md:overflow-visible"
-			aria-label="Main navigation"
-		>
-			<ul class="flex flex-col pt-8 md:pt-0 md:flex-row md:self-center w-full md:w-auto text-xl md:text-base">
-				<li class="dropdown">
-					<button
-						class="font-medium hover:text-gray-900 dark:hover:text-white px-4 py-3 flex items-center transition duration-150 ease-in-out"
-						>Pages</button
-					>
-					<ul
-						class="dropdown-menu rounded md:absolute pl-4 md:pl-0 md:hidden font-medium md:bg-white md:min-w-[200px] dark:md:bg-slate-800 drop-shadow-xl"
-					>
-						<li class="">
-							<a
-								class="rounded-t md:hover:bg-gray-100 dark:hover:bg-gray-700 py-2 px-4 block whitespace-no-wrap"
-								href="#">Features</a>
+	<div class="w-full flex py-1 px-4">
+		<div class="max-w-screen-lg mx-auto flex w-full">
+			<ul class="flex items-center justify-between w-full px-2">
+				<li class="p-1 flex flex-col items-center">
+					<a href={getHomePermalink()} title="home button" aria-label="Home">
+						<Icon name="logomark" class="w-6 h-6" />
+					</a>
+				</li>
+				{
+					globalLinks.map(({ title, url }) => (
+						<li class="p-1 flex flex-col items-center">
+							<a class="text-xs" href={url}>
+								{title}
+							</a>
 						</li>
-						<li class="">
-							<a class="md:hover:bg-gray-100 dark:hover:bg-gray-700 py-2 px-4 block whitespace-no-wrap" href="#"
-								>Profile</a>
-						</li>
-						<li class="">
-							<a
-								class="rounded-b md:hover:bg-gray-100 dark:hover:bg-gray-700 py-2 px-4 block whitespace-no-wrap"
-								href="#">Pricing</a>
-						</li>
+					))
+				}
+				<li class="p-1 flex items-center">
+					<ul class="flex items-center justify-between">
+						{
+							socialLinks.map(({ title, url, desc, icon }) => (
+								<li class="p-1 flex flex-col items-center">
+									<a href={url} title={title} aria-label={desc}>
+										<Icon name={icon} class="w-6 h-6" />
+									</a>
+								</li>
+							))
+						}
 					</ul>
 				</li>
-				<li>
-					<a
-						class="font-medium hover:text-gray-900 dark:hover:text-white px-4 py-3 flex items-center transition duration-150 ease-in-out"
-						href={getPermalink('useful-resources-to-create-websites', 'post')}
-						>Resources
-					</a>
-				</li>
-				<li>
-					<a
-						class="font-medium hover:text-gray-900 dark:hover:text-white px-4 py-3 flex items-center transition duration-150 ease-in-out"
-						href={getBlogPermalink()}>Blog</a
-					>
-				</li>
 			</ul>
-			<div class="md:self-center flex items-center mb-4 md:mb-0 ml-2">
-				<div class="hidden items-center md:flex">
-					<ToggleTheme iconClass="w-5 h-5" />
-					<a
-						class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:outline-none focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-2.5 inline-flex items-center"
-						aria-label="RSS Feed"
-						href={getRelativeLink('/rss.xml')}
-					>
-						<Icon name="tabler:rss" class="w-5 h-5" />
-					</a>
+			<!-- MODAL  -->
+			<div id="menu-modal" class="modal hidden" aria-hidden="true">
+				<div class="fixed inset-0 bg-default px-8 py-4">
+					<div class="space-y-4" role="dialog" aria-modal="true">
+						<div class="text-right">
+							<button id="close-nav-button" type="button" class="btn" aria-label="Close navigation">
+								<Icon pack="mdi" name="close" class="h-8" />
+							</button>
+						</div>
+						<div class="flex justify-center">
+							<Icon name="logomark" class="h-16" />
+						</div>
+						<ul class="flex flex-col">
+							{
+								globalLinks.map(({ title, url }) => (
+									<li>
+										<a class="block py-4 text-center text-xl" href={url}>
+											{title}
+										</a>
+									</li>
+								))
+							}
+						</ul>
+					</div>
 				</div>
 			</div>
-		</nav>
+			<!-- END MODAL -->
+		</div>
 	</div>
-</header>
+</nav>
+
+<script>
+	import MicroModal from 'micromodal';
+	import invariant from 'tiny-invariant';
+
+	const menuModalId = 'menu-modal';
+
+	const header = document.querySelector('#page-header') as HTMLElement;
+	const page = document.documentElement;
+	const menu = document.querySelector(`#${menuModalId} ul`);
+	const openNavButton = document.querySelector('#open-nav-button');
+	const closeNavButton = document.querySelector('#close-nav-button');
+
+	function headerAtTop() {
+		const d = page.clientHeight - page.scrollTop - header.offsetHeight;
+		return d < 0;
+	}
+
+	invariant(header, 'header should not be null');
+	invariant(menu, 'menu should not be null');
+	invariant(openNavButton, 'openNavButton should not be null');
+	invariant(closeNavButton, 'closeNavButton should not be null');
+
+	const openMenu = () => {
+		MicroModal.show(menuModalId, { disableScroll: true });
+		if (headerAtTop()) {
+			header.classList.remove('backdrop-blur-md');
+		}
+	};
+
+	const closeMenu = () => {
+		MicroModal.close(menuModalId);
+		if (headerAtTop()) {
+			header.classList.add('backdrop-blur-md');
+		}
+	};
+
+	openNavButton.addEventListener('click', openMenu);
+	closeNavButton.addEventListener('click', closeMenu);
+
+	document.addEventListener('scroll', () => {
+		header.classList.toggle('fixed-header', headerAtTop());
+		if (headerAtTop()) {
+			header.classList.add('backdrop-blur-md', 'bg-default-glass');
+		} else {
+			header.classList.remove('backdrop-blur-md', 'bg-default-glass');
+		}
+	});
+
+	menu.addEventListener('click', (event) => {
+		if ((event.target as HTMLElement).tagName === 'A') {
+			closeMenu();
+		}
+	});
+</script>
+
+<noscript>
+	<style>
+		#open-nav-button {
+			display: none;
+		}
+	</style>
+</noscript>
+
+<style>
+	.fixed-header {
+		@apply fixed top-0 bottom-auto;
+	}
+	.modal.is-open {
+		@apply block;
+	}
+</style>

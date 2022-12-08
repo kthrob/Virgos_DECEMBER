@@ -6,19 +6,22 @@ import Layout from '~/layouts/BaseLayout.astro';
 import PageNavigation from '~/components/widgets/PageNavigation.astro';
 import SkipToContent from '~/components/widgets/SkipToContent.astro';
 
-import type { NavLink, MetaData } from '~/types';
+import type { NavLink, IconLink, MetaData } from '~/types';
 export interface Props {
 	meta: MetaData;
-	links: Array<NavLink>;
+	globalLinks: Array<NavLink>;
+	localLinks: Array<NavLink>;
+	socialLinks: Array<IconLink>;
 }
-const { meta, links } = Astro.props;
+const { meta, localLinks, globalLinks, socialLinks } = Astro.props;
 ---
 
 <Layout {meta}>
 	<SkipToContent />
 	<Announcement />
-	<Header links={} />
-	<PageNavigation links={links} />
+	<Header globalLinks={globalLinks} socialLinks={socialLinks} />
+	<PageNavigation links={localLinks} />
+	<slot name="splash" />
 	<main>
 		<slot />
 	</main>

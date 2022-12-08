@@ -1,13 +1,13 @@
 ---
 import { Icon } from 'astro-icon';
 import Logo from '~/components/atoms/Logo.astro';
-import { getHomePermalink, getBlogPermalink, getPermalink, getRelativeLink } from '~/utils/permalinks';
-import ToggleTheme from '~/components/core/ThemeSwitcher.astro';
+/* import { getHomePermalink, getBlogPermalink, getPermalink, getRelativeLink } from '~/utils/permalinks';
+import ToggleTheme from '~/components/core/ThemeSwitcherOLD.astro'; */
 
-import type { NavItem } from '~/types';
+import type { NavLink } from '~/types';
 
 export interface Props {
-	links: Array<NavItem>;
+	links: Array<NavLink>;
 }
 
 const { links } = Astro.props;
@@ -15,6 +15,7 @@ const { links } = Astro.props;
 
 <header
 	id="page-header"
+	aria-label="page navigation"
 	class="absolute bottom-0 z-20 flex w-full items-center justify-between border-b border-default px-8 py-1 text-default"
 >
 	<!-- <h1 class="sr-only">Astro</h1>
@@ -36,7 +37,7 @@ const { links } = Astro.props;
 					}
 				</ul>
 			</nav>
-			<ToggleTheme />
+			<!-- <ToggleTheme /> -->
 			<button id="open-nav-button" type="button" class="btn sm:hidden" aria-label="Navigation">
 				<Icon pack="mdi" name="menu" class="h-8" />
 			</button>

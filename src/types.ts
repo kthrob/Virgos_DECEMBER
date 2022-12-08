@@ -10,13 +10,14 @@ export interface FeatureItem {
 	title: string;
 }
 
-export interface FooterLink {
-	description: string;
+export interface IconLink {
 	icon: string;
+	title: string;
+	desc: string;
 	url: string;
 }
 
-export interface NavItem {
+export interface NavLink {
 	title: string;
 	url: string;
 }
@@ -26,7 +27,7 @@ export interface ShowcaseSite {
 	url: string;
 }
 
-export interface SiteMeta {
+export interface MetaData {
 	title: string;
 	description: string;
 	canonical: URL;

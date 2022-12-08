@@ -1,7 +1,7 @@
 ---
 import { SITE } from '~/config.mjs';
 import { getCanonical, getHomePermalink } from '~/utils/permalinks';
-import PageLayout from '~/layouts/PageLayout.astro';
+import LandingLayout from '~/layouts/LandingLayout.astro';
 
 import Splash from '~/components/widgets/Splash.astro';
 import Intro from '~/components/widgets/Intro.astro';
@@ -18,29 +18,42 @@ import Services from '~/components/widgets/Services.astro';
 
 import JumbotronTest from '~/components/in-progress/JumbotronTest.astro';
 
-import type { NavItem, SiteMeta } from "~/types";
+import type { NavLink, MetaData } from '~/types';
 
-const meta: SiteMeta = {
+const meta: MetaData = {
 	title: SITE.title,
 	description: SITE.description,
 	canonical: getCanonical(getHomePermalink()),
 };
 
-const sectionLinks: Array<NavItem> = [
+const globalLinks: Array<NavLink> = [
+	{ title: 'Brand Identity', url: '#features' },
+	{ title: 'Web Design', url: '#compatibility' },
+	{ title: 'App Development', url: '#showcase' },
+	{ title: 'Showcase', url: '#showcase' },
+];
+
+const localLinks: Array<NavLink> = [
 	{ title: 'Why Virgos', url: '#features' },
 	{ title: 'Services', url: '#compatibility' },
 	{ title: 'Showcase', url: '#showcase' },
-]
+];
+
+const socialLinks = [
+	{ title: 'facebook', desc: 'Facebook', icon: 'mdi:facebook', url: '#' },
+	{ title: 'instagram', desc: 'Instagram', icon: 'mdi:instagram', url: '#' },
+	{ title: 'twitter', desc: 'Twitter', icon: 'mdi:twitter', url: '#' },
+];
 ---
 
-<PageLayout meta={meta} links={sectionLinks}>
+<LandingLayout meta={meta} globalLinks={globalLinks} localLinks={localLinks} socialLinks={socialLinks}>
 	<Splash slot="splash" />
 	<Intro />
 	<JumbotronTest />
 	<Services />
 	<Note />
 	<Features />
-<!-- 	<Steps /> -->
+	<!-- 	<Steps /> -->
 	<Services />
 	<Price />
 	<Features3 />
@@ -48,4 +61,4 @@ const sectionLinks: Array<NavItem> = [
 	<FAQs />
 	<Stats />
 	<CallToAction />
-</PageLayout>
+</LandingLayout>
