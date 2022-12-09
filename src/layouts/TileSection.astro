@@ -1,6 +1,6 @@
 ---
 import Tile from '~/components/widgets/Tile.astro';
-import Mockup from '~/components/widgets/Mockup.astro';
+import Mockup from '~/components/devices/Mockup.astro';
 export interface Props {
 	items: any;
 }
@@ -15,7 +15,7 @@ const { items } = Astro.props;
 			<div class="grid gap-6 md:grid-cols-2 md:mx-6 items-start">
 				{
 					items.map(({ title, description, background, content }) => (
-						<Tile title={title} description={description} bg={background}></Tile>
+						<Tile title={title} description={description} bg={background} />
 					))
 				}
 			</div>

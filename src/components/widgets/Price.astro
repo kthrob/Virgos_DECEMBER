@@ -1,17 +1,18 @@
 ---
 import { Icon } from 'astro-icon';
 import ContentSection from '~/layouts/ContentSection.astro';
-import Mockup from './Mockup.astro';
+import MacBook from '../devices/MacBook.astro';
+import Mockup from '~/components/devices/Mockup.astro';
 ---
 
-<ContentSection title="What we do" id="services" bg="secondary">
+<ContentSection id="fubar" bg="primary">
 	<Fragment slot="lead">
 		Astro is a new kind of site builder for the
 		<span class="text-primary">modern</span> web.
 		<span class="text-primary">Lightning-fast</span>
 		performance meets <span class="text-primary">powerful</span> developer experience.
 	</Fragment>
-	<div class="max-h-72 scale-50">	
-		<Mockup device="iphone" imageUrl="/src/assets/images/bg-iphone-14-pro.jpg"/>
-	</div>
+	<MacBook id="fubar" imageUrl="/src/assets/images/bg-imac.jpg" />
+	<Mockup device="macbook" imageUrl="/src/assets/images/bg-macbook-pro.jpg" />
+	<!-- <Mockup device="macbook" imageUrl="/src/assets/images/bg-macbook-pro.jpg" /> -->
 </ContentSection>
