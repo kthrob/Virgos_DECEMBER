@@ -2,7 +2,7 @@
 import Announcement from '~/components/widgets/Announcement.astro';
 import Footer from '~/components/widgets/Footer.astro';
 import NavGlobal from '~/components/widgets/NavGlobal.astro';
-import Layout from '~/layouts/BaseLayout.astro';
+import BaseLayout from '~/layouts/BaseLayout.astro';
 import NavLocal from '~/components/widgets/NavLocal.astro';
 import SkipToContent from '~/components/widgets/SkipToContent.astro';
 
@@ -16,14 +16,16 @@ export interface Props {
 const { meta, localLinks, globalLinks, socialLinks } = Astro.props;
 ---
 
-<Layout {meta}>
+<BaseLayout {meta}>
 	<SkipToContent />
-	<Announcement />
-	<NavGlobal globalLinks={globalLinks} socialLinks={socialLinks} />
-	<slot name="splash" />
+	<!-- <Announcement /> -->
+	<section id="splash-header">
+		<NavGlobal globalLinks={globalLinks} socialLinks={socialLinks} />
+		<slot name="splash" />
+	</section>
 	<main class="relative">
 		<NavLocal localLinks={localLinks} />
 		<slot />
 	</main>
 	<Footer />
-</Layout>
+</BaseLayout>

@@ -10,13 +10,13 @@ const devices = {
 	ipad: 'device-ipad-pro',
 	iphone: 'device-iphone-14-pro',
 	macbook: 'device-macbook-14-pro',
-	imac: 'device-imac'
+	imac: 'device-imac',
 };
 
 const type = devices[device];
 ---
 
-<div class={`device ${type} mx-auto`}>
+<div class={`device ${type}`}>
 	<div class="device-frame">
 		<img class="device-screen" src={imageUrl} />
 	</div>

@@ -15,6 +15,6 @@ const bgColors = {
 let background = bgColors[bg];
 ---
 
-<div id={`${id}-card-container`} class={`${background} relative max-w-screen-xl mx-auto flex flex-col items-center`}>
+<section id={`${id}-section`} class={`${background} relative flex flex-col items-center`}>
 	<slot />
-</div>
+</section>

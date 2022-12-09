@@ -1,0 +1,24 @@
+---
+import Tile from '~/components/widgets/Tile.astro';
+import Mockup from '~/components/widgets/Mockup.astro';
+export interface Props {
+	items: any;
+}
+
+const { items } = Astro.props;
+---
+
+<div class="w-full">
+	<!-- <div class="absolute inset-0 bg-primary-50 dark:bg-slate-800 pointer-events-none mb-32" aria-hidden="true"></div> -->
+	<div class="relative mx-auto max-w-screen-md lg:px-6 lg:max-w-screen-xl xl:max-w-screen-2xl">
+		<div class="py-4 sm:py-6 lg:py-8">
+			<div class="grid gap-6 md:grid-cols-2 md:mx-6 items-start">
+				{
+					items.map(({ title, description, background, content }) => (
+						<Tile title={title} description={description} bg={background}></Tile>
+					))
+				}
+			</div>
+		</div>
+	</div>
+</div>

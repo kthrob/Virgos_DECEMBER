@@ -15,6 +15,6 @@ const bgColors = {
 let background = bgColors[bg];
 ---
 
-<div id={`${id}-card-container`} class={`${background} relative max-w-screen-xl mx-auto flex flex-col items-center`}>
+<div id={`${id}-slide-stack`} class={`relative ${background} w-full min-h-[100px] md:rounded-t-2xl shadow-md`}>
 	<slot />
 </div>

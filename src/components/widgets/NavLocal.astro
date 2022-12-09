@@ -16,11 +16,11 @@ const { localLinks } = Astro.props;
 <nav
 	id="local-nav"
 	aria-label="page navigation"
-	class="absolute top-0 z-20 flex w-full items-center border-b border-default bg-secondary text-primary backdrop-blur-xl transition-all duration-1000 ease-in-out"
+	class="sticky top-0 z-20 flex w-full items-center border-b border-default bg-secondary text-primary backdrop-blur-xl transition-all duration-1000 ease-in-out"
 >
 	<div class="w-full flex py-1 px-4">
 		<div class="max-w-screen-lg mx-auto flex w-full">
-			<div class="p-1 flex flex-row items-center pl-2">
+			<div class="flex flex-row items-center pl-2">
 				<span class="p-1 flex flex-col items-center">
 					<a href={getHomePermalink()} title="home button" aria-label="Home">
 						<Icon name="logomark" class="w-6 h-6" />

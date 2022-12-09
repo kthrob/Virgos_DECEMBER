@@ -16,7 +16,7 @@
 
 	function localNavAtTop() {
 		const d = page.clientHeight - page.scrollTop - localNav.offsetHeight;
-		console.log('local nav at top?', d <= 0);
+		/* console.log('local nav at top?', d <= 0); */
 		return d <= 0;
 	}
 
@@ -44,14 +44,16 @@
 	closeNavButton.addEventListener('click', closeMenu);
 
 	document.addEventListener('scroll', () => {
-		localNav.classList.toggle('fixed-header', localNavAtTop());
+		/* localNav.classList.toggle('fixed-header', localNavAtTop()); */
 		/* localNav.classList.toggle('sticky', localNavAtTop()); */
 		/* globalNav.classList.toggle('fixed', localNavAtTop()); */
-		globalNav.classList.toggle('sticky', localNavAtTop());
+		/* globalNav.classList.toggle('sticky', localNavAtTop()); */
 		if (localNavAtTop()) {
-			localNav.classList.add('backdrop-blur-md', 'bg-default-glass');
+			console.log('**local nav is at top of screen');
+			/* localNav.classList.add('backdrop-blur-md', 'bg-default-glass'); */
 		} else {
-			localNav.classList.remove('backdrop-blur-md', 'bg-default-glass');
+			console.log('*local nav is no longer at top');
+			/* localNav.classList.remove('backdrop-blur-md', 'bg-default-glass'); */
 		}
 	});
 
